@@ -5,6 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<modules>
 		<module>cloud-alibaba-nacos-9001</module>
+		<module>cloud-alibaba-nacos-9002</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
