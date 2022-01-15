@@ -28,6 +28,16 @@
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-core</artifactId>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.alibaba.csp</groupId>-->
+<!--			<artifactId>sentinel-transport-simple-http</artifactId>-->
+<!--		</dependency>-->
+		<!--sentinel-->
+		<!-- 备注：不引入spring-cloud-starter-alibaba-sentinel的话，sentinel的控制台内容为空白 -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
