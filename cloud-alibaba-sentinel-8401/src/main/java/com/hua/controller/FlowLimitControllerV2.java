@@ -1,7 +1,8 @@
 //package com.hua.controller;
 //
-//import java.util.concurrent.TimeUnit;
+//import com.hua.service.TestService;
 //
+//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RestController;
 //
@@ -10,21 +11,18 @@
 // * @author lerry
 // */
 //@RestController
-//public class FlowLimitController {
+//public class FlowLimitControllerV2 {
+//
+//	@Autowired
+//	private TestService testService;
 //
 //	@GetMapping("testA")
 //	public String testA() {
-////		try {
-////			TimeUnit.SECONDS.sleep(2);
-////		}
-////		catch (InterruptedException e) {
-////			e.printStackTrace();
-////		}
-//		return "----testA";
+//		return testService.common();
 //	}
 //
 //	@GetMapping("testB")
 //	public String testB() {
-//		return "----testB";
+//		return testService.common();
 //	}
 //}
