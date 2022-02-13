@@ -9,6 +9,10 @@
 		<module>cloud-alibaba-nacos-consume</module>
 		<module>cloud-alibaba-config-3377</module>
 		<module>cloud-alibaba-sentinel-8401</module>
+		<module>cloudalibaba-commons</module>
+		<module>cloudalibaba-provider-9003</module>
+		<module>cloudalibaba-provider-9004</module>
+		<module>cloudalibaba-consumer8084</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
