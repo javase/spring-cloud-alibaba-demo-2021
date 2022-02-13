@@ -1,5 +1,7 @@
 package com.hua.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.hua.cloudalibabacommons.entity.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,10 +28,47 @@ public class DemoController {
 	@Autowired
 	private RestTemplate restTemplate;
 
+	//	@GetMapping("/consumer/fallback/{id}")
+//	public JsonResult<String> fallback(@PathVariable Long id) {
+//		//通过Ribbon发起远程访问，访问9003/9004
+//		JsonResult<String> result = restTemplate.getForObject(SERVICE_URL + "/info/" + id, JsonResult.class);
+//		return result;
+//	}
+
 	@GetMapping("/consumer/fallback/{id}")
+	@SentinelResource(value = "fallback", fallback = "fallbackHandler", blockHandler = "blockHandler",
+			exceptionsToIgnore = {NullPointerException.class})
 	public JsonResult<String> fallback(@PathVariable Long id) {
-		//通过Ribbon发起远程访问，访问9003/9004
-		JsonResult<String> result = restTemplate.getForObject(SERVICE_URL + "/info/" + id, JsonResult.class);
+		if (id <= 3) {
+			//通过Ribbon发起远程访问，访问9003/9004
+			JsonResult<String> result = restTemplate.getForObject(SERVICE_URL + "/info/" + id, JsonResult.class);
+			log.info(result.getData());
+			return result;
+		}
+		else {
+			throw new NullPointerException("没有对应的数据记录");
+		}
+	}
+
+	/**
+	 * 处理Java异常
+	 * @param id
+	 * @param e
+	 * @return
+	 */
+	public JsonResult<String> fallbackHandler(Long id, Throwable e) {
+		JsonResult<String> result = new JsonResult<>(444, "出现未知商品ID");
+		return result;
+	}
+
+	/**
+	 * 处理sentinel限流
+	 * @param id
+	 * @param e
+	 * @return
+	 */
+	public JsonResult<String> blockHandler(Long id, BlockException e) {
+		JsonResult<String> result = new JsonResult<>(445, "BlockException限流");
 		return result;
 	}
 
