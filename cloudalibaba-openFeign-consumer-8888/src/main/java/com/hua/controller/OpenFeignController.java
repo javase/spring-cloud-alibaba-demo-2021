@@ -22,4 +22,10 @@ public class OpenFeignController {
 	public JsonResult<String> getInfo(@PathVariable("id") Long id) {
 		return openFeignService.sql(id);
 	}
+
+	//OpenFeginController
+	@GetMapping("/testTimeout")
+	public String TestTimeout() {
+		return openFeignService.timeOut();
+	}
 }

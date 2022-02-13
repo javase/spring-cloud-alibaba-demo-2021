@@ -1,6 +1,7 @@
 package com.hua.controller;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import com.hua.cloudalibabacommons.entity.JsonResult;
 
@@ -32,5 +33,17 @@ public class DataController {
 	public JsonResult<String> sql(@PathVariable("id") Long id) {
 		JsonResult<String> result = new JsonResult<String>(200, serverPort + ":" + hashMap.get(id));
 		return result;
+	}
+
+	@GetMapping("/timeOut")
+	public String timeOut() {
+		try {
+			System.out.println("延迟响应");
+			TimeUnit.SECONDS.sleep(3);
+		}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return serverPort;
 	}
 }

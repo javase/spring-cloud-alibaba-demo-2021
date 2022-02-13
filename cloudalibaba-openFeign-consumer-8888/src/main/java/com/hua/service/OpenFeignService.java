@@ -17,4 +17,7 @@ public interface OpenFeignService {
 
 	@GetMapping("/info/{id}")
 	JsonResult<String> sql(@PathVariable("id") Long id);
+
+	@GetMapping("/timeOut")
+	String timeOut();
 }
