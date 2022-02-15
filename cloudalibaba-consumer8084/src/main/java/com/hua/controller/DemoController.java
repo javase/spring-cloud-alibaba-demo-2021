@@ -3,6 +3,7 @@ package com.hua.controller;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.hua.cloudalibabacommons.entity.JsonResult;
+import com.hua.service.FeignService;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,19 @@ public class DemoController {
 
 	@Autowired
 	private RestTemplate restTemplate;
+
+	@Autowired
+	private FeignService feignService;
+
+	@GetMapping("/getInfo/{id}")
+	public JsonResult<String> getInfo(@PathVariable("id") Long id) {
+		if (id > 3) {
+			throw new RuntimeException("没有改ID");
+		}
+		else {
+			return feignService.sql(id);
+		}
+	}
 
 	//	@GetMapping("/consumer/fallback/{id}")
 //	public JsonResult<String> fallback(@PathVariable Long id) {
