@@ -1,0 +1,19 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: cloud-gateway-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      discoverty:
+        locator:
+          enabled: true
+      routes:
+        - id: nacos-provider
+          uri: http://localhost:9001/nacos-provider
+          predicates:
+            - Path=/msb/**
