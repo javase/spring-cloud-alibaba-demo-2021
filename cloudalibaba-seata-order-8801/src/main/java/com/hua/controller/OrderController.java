@@ -19,7 +19,6 @@ public class OrderController {
 	private OrderService orderService;
 
 	@GetMapping("/order/create")
-	@GlobalTransactional // 开启分布式事务
 	public String createOrder(@RequestParam Long productId) {
 		orderService.buy(productId, 1);
 		return "create order success";

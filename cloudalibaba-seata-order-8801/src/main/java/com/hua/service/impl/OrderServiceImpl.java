@@ -5,6 +5,7 @@ import com.hua.dao.entity.Order;
 import com.hua.dao.repository.OrderRepository;
 import com.hua.service.FeignService;
 import com.hua.service.OrderService;
+import io.seata.spring.annotation.GlobalTransactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	@GlobalTransactional // 开启分布式事务
 	public void buy(Long productId, Integer count) {
 		// 1. 通过feign调用库存微服务，扣减库存
 		feignService.decrement(productId);
