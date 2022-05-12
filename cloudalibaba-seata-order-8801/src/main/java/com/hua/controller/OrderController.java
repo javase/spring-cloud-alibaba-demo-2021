@@ -1,6 +1,7 @@
 package com.hua.controller;
 
 import com.hua.service.OrderService;
+import io.seata.spring.annotation.GlobalTransactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ public class OrderController {
 	private OrderService orderService;
 
 	@GetMapping("/order/create")
+	@GlobalTransactional // 开启分布式事务
 	public String createOrder(@RequestParam Long productId) {
 		orderService.buy(productId, 1);
 		return "create order success";
