@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
 		feignService.decrement(productId);
 		// 2. 模拟异常 库存扣减之后，订单未生成
 		if (count > 0) {
-			throw new RuntimeException("模拟抛出异常");
+			int a = 1/0;
 		}
 		// 3. 生成订单
 		create(productId, count);

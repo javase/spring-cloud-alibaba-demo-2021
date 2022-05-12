@@ -1,8 +1,5 @@
 package com.hua.stock.service.impl;
 
-import java.util.Optional;
-
-import com.hua.stock.dao.entity.Stock;
 import com.hua.stock.dao.repository.StockRepository;
 import com.hua.stock.service.StockService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,15 +23,16 @@ public class StockServiceImpl implements StockService {
 	 */
 	@Override
 	public void decrement(Long productId) {
-		Optional<Stock> byId = stockRepository.findById(productId);
-		if (byId.isPresent()) {
-			Stock stock = byId.get();
-			stock.setCount((stock.getCount() - 1));
-			Stock savedEntity = stockRepository.save(stock);
-			log.info("扣减后的库存为：{}", savedEntity.getCount());
-		}
-		else {
-			log.info("商品：{}不存在", productId);
-		}
+//		Optional<Stock> byId = stockRepository.findById(productId);
+//		if (byId.isPresent()) {
+//			Stock stock = byId.get();
+//			stock.setCount((stock.getCount() - 1));
+//			Stock savedEntity = stockRepository.save(stock);
+//			log.info("扣减后的库存为：{}", savedEntity.getCount());
+//		}
+//		else {
+//			log.info("商品：{}不存在", productId);
+//		}
+		stockRepository.updateCount(productId);
 	}
 }

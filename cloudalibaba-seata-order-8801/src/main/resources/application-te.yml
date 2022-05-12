@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cloudalibaba-seata-order-8801
+    name: seata-order-8801
   datasource:
     druid:
       url: jdbc:mysql://127.0.0.1:3306/seata_mall?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
@@ -23,7 +23,7 @@ spring:
         enabled: false
     alibaba:
       seata:
-        tx-service-group: SEATA_GROUP # 事务组, 随便写
+        tx-service-group: mygroup # 事务组, 随便写
 ribbon:
   ReadTimeout: 5000
   ConnectTimeout: 5000
@@ -34,8 +34,9 @@ management:
     web:
       exposure:
         include='*':
+
 seata:
-  tx-service-group: SEATA_GROUP # 事务组名称，要和服务端对应
+  tx-service-group: mygroup # 事务组名称，要和服务端对应
   service:
     vgroup-mapping:
-      SEATA_GROUP: default # key是事务组名称 value要和服务端的机房名称保持一致
+      mygroup: default # key是事务组名称 value要和服务端的机房名称保持一致

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author lerry
  */
 @Service
-@FeignClient("cloudalibaba-seata-stock-8802")
+@FeignClient("seata-stock-8802")
 public interface FeignService {
 
 	@GetMapping("/stock/decrement")
