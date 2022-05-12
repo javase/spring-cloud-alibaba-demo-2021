@@ -35,12 +35,13 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public void buy(Long productId, Integer count) {
-		// 扣减库存
+		// 1. 通过feign调用库存微服务，扣减库存
 		feignService.decrement(productId);
-
-		// 模拟异常
-
-		// 生成订单
+		// 2. 模拟异常 库存扣减之后，订单未生成
+		if (count > 0) {
+			throw new RuntimeException("模拟抛出异常");
+		}
+		// 3. 生成订单
 		create(productId, count);
 	}
 }
