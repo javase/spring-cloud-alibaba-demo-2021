@@ -34,6 +34,13 @@ public class OrderServiceImpl implements OrderService {
 		orderRepository.save(order);
 	}
 
+	/**
+	 * 备注：8801和8802启动成功后，在seata的服务端，
+	 * 正常情况下，可以看到注册到seata服务端的日志显示。
+	 *
+	 * @param productId
+	 * @param count
+	 */
 	@Override
 	@GlobalTransactional // 开启分布式事务
 	public void buy(Long productId, Integer count) {
